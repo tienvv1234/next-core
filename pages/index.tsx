@@ -69,3 +69,12 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getServerSideProps() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  return {
+    props: {
+
+    }
+  }
+}

@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### server site render
 
-## Getting Started
+- su dung cache
+    + s-maxage=5
+    + s-maxage and stale-while-revalidate
+    + s-maxage and stale-while-revalidate=5
+cái chỉ test đc trên production and cache in CDN
+- context.res.setHeader('Cache-Control', 's-maxage=5') trong context của getServerSideProps
+request đến server thì gọi getServerSideProps xong thì nó sẽ cache resouce đấy 5s và các request trước 5s sẽ đc trả về dử liệu trong cache, hết 5s thì sẽ giải phóng cache
+và request đến thì gọi lại hàm getServerSideProps thí sẽ tiếp tục cache
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate')
+request đén server thì gọi getServerSideProps xong thì nó sẽ cache resource đấy 5s và các request trước 5s sẽ đc trả về dữ liệu trong cache
+hết 5s nó vẫn trả về dữ liệu trong cache nhung sau đó call getServerSideProps rồi set dữ liệu mới vào cache với số s maxage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5')
+request đén server thì gọi getServerSideProps xong thì nó sẽ cache resource đấy 5s và các request trước 5s sẽ đc trả về dữ liệu trong cache
+hết 5s từ 5 -> 10 s nó sẽ trả về thằng dữ liệu cũ trong cache và call getServerSideProps dữ liệu mới sẽ đước trả về request sau 10s
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+note CDN, mỗi khi new deploy lên server với server bt thì sẽ vẫn có dữ liệu cũ trong cdn với Vercel nó sẽ clear cho chúng ta
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+cách này ứng dụng đối với trang publish còn đối với trang hiển thị theo user thì sẽ không đc vì nó sẽ cchứa nhiều logic hơn
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Incremental Static Regeneration ISR
+SSG + able to generate html on demand
+100,000 products
+- Faster Builds: generate the most popular 1000 products at build time, if request the product 1001, request made to ther products will be cache miss and statically generate on-demand: 1 minute builds
 
-## Learn More
+- Higher Cache Hit Rate: generate 10,000 products at build-time, ensuring more products are cached ahead of a user's request: 8-minute builds
 
-To learn more about Next.js, take a look at the following resources:
+ISR uses: in getStaticProps using specific param `revalidate: 60` 60s
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+0s  ----------------------------------------------------------> 60s trờ đi------------------------------------>
+generate page             serve from cache              return Stale page                                `Serve from cache V2`
+                                                        `Generate new page with new V2` ----------------------->update cache
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ISR có option quan trọng là trong getStaticPath là fallback khi người dùng request đến sản phầm 1001 
++ với fallback bàng block, next sẽ server render cái products đấy trong reuest đầu tiên(bằng cách gọi getStaticProp để lấy dữ page mới về ), sau đó sẽ serve file trong cache
 
-## Deploy on Vercel
++ Với fallback bằng true, server sẽ trả về ngay lập tức 1 static page với loading, và sau khi loading xong sẽ trả về dư liệu cho người dùng
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-- preferred blocking
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+CHÚ Ý: không phải cứ đén 60s nó chạy lại mà phải có request đến logic đấy thì nó mới generate new page với version mới
+public pages with no data: SSG
+public pages with data and can be updated from CMS: ISR
+private pages: SSG + CSR
+
+
+
