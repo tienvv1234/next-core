@@ -49,4 +49,22 @@ public pages with data and can be updated from CMS: ISR
 private pages: SSG + CSR
 
 
+token luu local storage xss attack
+ko lien quan den tien bac thi dc
 
+
+token luu Cookie csrf attck
+neu lq den tai chinh tien bac thi luu cookie
+
+vay xss attck
+la hacker bang cach nao do nhung doan script ban vao trang web cua minh roi nguoi dung se bam vao
+
+de chong dc 2 loai attact nay dung sanitize html, dompurify loai bo cac script ko an toan
+
+th 2 csrf ...
+
+nextjs handle authentication
+client ------> Post api/login ---------> Api proxy(My nextjs) ---------> Api server(real api)
+client <------ set http only cookie with auth token <------- api proxy <--------- apt server return auth toke
+
+http only: true khong cho phep javascript lay token, false nguoc lai
