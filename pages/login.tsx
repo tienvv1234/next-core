@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { authApi } from '../api-client';
 import { useAuth } from '../hooks';
 
 export default function LoginPage() {
+    const route = useRouter();
     const {profile, login, logout} = useAuth({
         revalidateOnMount: false,
         
@@ -10,6 +12,7 @@ export default function LoginPage() {
     async function handleLoginClick() {
         try {
             await login()
+            route.push('/about')
         } catch (error) {
             console.log(error)
         }

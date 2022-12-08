@@ -4,12 +4,13 @@ import { authApi } from "../api-client";
 
 export function useAuth(options?: Partial<PublicConfiguration>) {
     // profile
-    // 
     const {data: profile, error, isValidating, mutate} = useSWR('/profile', {
         dedupingInterval: 60000,
         revalidateOnFocus: false,
         ...options,
     });
+
+    const firstLoading = profile === undefined && error === undefined;
 
     async function login() {
         await authApi.login({
@@ -29,6 +30,7 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
         profile,
         error,
         login,
-        logout
+        logout,
+        firstLoading
     }
 }
