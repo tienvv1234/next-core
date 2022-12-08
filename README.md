@@ -68,3 +68,19 @@ client ------> Post api/login ---------> Api proxy(My nextjs) ---------> Api ser
 client <------ set http only cookie with auth token <------- api proxy <--------- apt server return auth toke
 
 http only: true khong cho phep javascript lay token, false nguoc lai
+
+### SWR
+React hooks for data fetching
+SWR is derived from `stale-while-revalidate`
+
+server state: react query, swr, react hook
+
+client state: redux, mobx, zustand etc are client state
+
+in project when we use server state, so we should't use redux for client state because it too less to use instead of that we using context api
+
+in nextjs we use SWR, in reactjs CRA(create react app) we use react query
+
+## SWR (server state management)
+
+revalidateOnForcus: là khi nhảy sang tab khác rồi bách lại nó sẽ gọi lai api
