@@ -1,0 +1,23 @@
+
+# Post count player rake report
+POST https://js-post-api.herokuapp.com/api/login
+#POST https://pokermoogley.olive-team.dev/countDataForRakeBack
+content-type: application/json
+
+{
+    "username": "testagent01",
+    "password": 1666579500000
+}
+
+###
+
+POST http://localhost:3000/api/login
+content-type: application/json
+
+{
+    "username": "testagent01",
+    "password": "1666579500000"
+}
+
+### 
+GET http://localhost:3000/api/profile

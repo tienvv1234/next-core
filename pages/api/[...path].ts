@@ -21,8 +21,9 @@ export default function handler(
 ) {
   return new Promise((resolve) => {
     // convert cookies to headers authorization
+    console.log('API')
     const cookies = new Cookies(req, res)
-    const accessToken = cookies.get('accessToken');
+    const accessToken = cookies.get('access_token');
     if (accessToken) {
       req.headers.authorization = `Bearer ${accessToken}`;
     }
