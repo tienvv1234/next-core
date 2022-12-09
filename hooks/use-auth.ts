@@ -4,7 +4,7 @@ import { authApi } from "../api-client";
 
 export function useAuth(options?: Partial<PublicConfiguration>) {
     // profile
-    const {data: profile, error, isValidating, mutate} = useSWR('/profile', {
+    const {data: profile, error, isValidating, mutate} = useSWR<any, any>('/profile', {
         dedupingInterval: 60000,
         revalidateOnFocus: false,
         ...options,
