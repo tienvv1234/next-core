@@ -13,18 +13,20 @@ export function MainLayout({ children }: LayoutProps) {
     }, []);
 
     return (
-        <Stack>
+        <Stack minHeight='100vh'>
             <Header />
-                <Link href='/'>
-                    <a>Home</a>
-                </Link>
-                <Link href='/blog'>
-                    <a>Blog</a>
-                </Link>
-                <Link href='/works'>
-                    <a>Works</a>
-                </Link>
-                <Box component='main'>{children}</Box>
+                <Box component='main' flexGrow={1}>
+                    <Link href='/'>
+                        <a>Home</a>
+                    </Link>
+                    <Link href='/blog'>
+                        <a>Blog</a>
+                    </Link>
+                    <Link href='/works'>
+                        <a>Works</a>
+                    </Link>
+                    {children}
+                </Box>
             <Footer />
         </Stack>
     );
