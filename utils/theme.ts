@@ -5,7 +5,7 @@ import { red } from '@mui/material/colors';
 export const theme = createTheme({
     palette: {
         primary: {
-            main: '#FF6464',
+            main: '#F1F5F9',
         },
         secondary: {
             main: '#00A8CC',
@@ -33,6 +33,19 @@ export const theme = createTheme({
                     },
                 },
             }
+        },
+        MuiLink: {
+            defaultProps: {
+                underline: 'none',
+            },
+            styleOverrides: {
+                root: {
+                    color: 'black',
+                    '&:hover': {
+                        color: '#FF6464',
+                    },
+                }
+            },
         }
     }
 });
