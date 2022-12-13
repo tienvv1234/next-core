@@ -12,12 +12,11 @@ export function HeaderDesktop(props: IHeaderDesktopProps) {
     const router = useRouter();
     return (
         <Box display={{ xs: 'none', lg: 'block' }} py={2}>
-            Header Desktop
             <Container>
                 <Stack direction='row' justifyContent='flex-end'>
                     {ROUTE_LIST.map((route) => (
                         <Link key={route.path} href={route.path} passHref>
-                            <MuiList sx={{ ml: 2 }} underline='hover' className={clsx({active: router.pathname === route.path})}>
+                            <MuiList sx={{ ml: 2, fontWeight: 'medium'}} underline='hover' className={clsx({active: router.pathname === route.path})}>
                                 {route.label}
                             </MuiList>
                         </Link>
