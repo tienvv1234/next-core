@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import { Seo } from '../components/common'
 import { HeroSection } from '../components/home'
 import FeatureWorks from '../components/home/featured-works'
 import RecentPost from '../components/home/recent-posts'
@@ -14,6 +15,14 @@ const Home: NextPageWithLayout = () => {
 
   return (
       <Box>
+        <Seo
+          data={{
+            title: 'Home',
+            description: 'Home page',
+            url: 'https://nextjs-starter-kit.vercel.app/',
+            thumbnail: 'https://nextjs-starter-kit.vercel.app/images/og-image.jpg',
+          }}
+        />
         <HeroSection />
         <RecentPost />
         <FeatureWorks />
