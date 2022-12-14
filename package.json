@@ -21,6 +21,7 @@
     "axios": "^1.2.1",
     "clsx": "^1.2.1",
     "cookies": "^0.8.0",
+    "date-fns": "^2.29.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "http-proxy": "^1.18.1",
