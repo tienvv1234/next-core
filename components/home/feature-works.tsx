@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Post } from '../../models';
 import { PostCard } from './post-card';
 
-export default function RecentPost() {
+export default function FeatureWorks() {
     const postList: Post[] = [
         {
             id: 1,
@@ -23,31 +23,9 @@ export default function RecentPost() {
         }
     ];
     return (
-        <Box component='section' bgcolor='secondary.light' pt={2} pb={4}>
+        <Box component='section' pt={2} pb={4}>
             <Container>
-                <Stack
-                    direction='row'
-                    mb={2}
-                    justifyContent={{
-                        xs: 'center',
-                        md: 'space-between',
-                    }}
-                    alignItems='center'
-                >
-                    <Typography variant='h5'>Recent Posts</Typography>
-                    <Link href='/blog' passHref>
-                        <MuiLink
-                            sx={{
-                                display: {
-                                    xs: 'none',
-                                    md: 'inline',
-                                },
-                            }}
-                        >
-                            View all
-                        </MuiLink>
-                    </Link>
-                </Stack>
+                <Typography variant='h5'>Featured Works</Typography>
                 <Stack
                     direction={{
                         xs: 'column',

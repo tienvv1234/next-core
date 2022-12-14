@@ -84,3 +84,4 @@ in nextjs we use SWR, in reactjs CRA(create react app) we use react query
 ## SWR (server state management)
 
 revalidateOnForcus: là khi nhảy sang tab khác rồi bách lại nó sẽ gọi lai api
+
