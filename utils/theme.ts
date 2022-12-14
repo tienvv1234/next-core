@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
+import { colors } from '@mui/material';
 
 // Create a theme instance.
 export const theme = createTheme({
@@ -8,9 +9,10 @@ export const theme = createTheme({
     },
     palette: {
         primary: {
-            main: '#F1F5F9',
+            main: '#FF6464',
         },
         secondary: {
+            light: '#EDF7FA',
             main: '#00A8CC',
         },
         error: {
@@ -49,6 +51,19 @@ export const theme = createTheme({
                     },
                 }
             },
-        }
+        },
+        MuiButton: {
+            variants: [
+                {
+                    props: { variant: 'contained', color: 'primary' },
+                    style: { color: 'white' },
+                }
+            ],
+            styleOverrides: {
+                root: {
+                    color: 'white',
+                },
+            }
+        },
     }
 });
