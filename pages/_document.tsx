@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="emotion-insertion-point" content="" />
           <link 
-            ref="stylesheet"
+            rel="stylesheet"
             href="https://fonts.googleapis.com/css?famify=Roboto:300,400,500,700&display=swap" 
           />
           <link 
