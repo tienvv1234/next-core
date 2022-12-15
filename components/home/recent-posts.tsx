@@ -13,6 +13,7 @@ export default function RecentPost() {
             description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
             tagList: ['Design', 'Pattern'],
             publishedDate: new Date().getTime().toString(),
+            slug: '',
         },
         {
             id: 2,
@@ -20,6 +21,7 @@ export default function RecentPost() {
             description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
             tagList: ['Figma', 'Icon Design'],
             publishedDate: new Date().getTime().toString(),
+            slug: '',
         }
     ];
     return (

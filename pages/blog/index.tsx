@@ -7,6 +7,7 @@ export interface IBlogListPageProps {
 }
 
 export default function BlogListPage({ blogs }: IBlogListPageProps) {
+    console.log('Blogs', blogs);
     return (
         <div>
             <h1>Blog List Page</h1>
@@ -27,15 +28,10 @@ export default function BlogListPage({ blogs }: IBlogListPageProps) {
 export const getStaticProps: GetStaticProps<IBlogListPageProps> = async (
     context: GetStaticPropsContext
 ) => {
-    // const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    // const blogs = await res.json();
-
-    // convert markdown to javascpript object
-
     const data = await getPostList();
     return {
         props: {
-            blogs: data.map((x: any) => ({id: x.id, title: x.title})),
+            blogs: data,
         },
     };
 }

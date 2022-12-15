@@ -24,6 +24,7 @@
     "date-fns": "^2.29.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "gray-matter": "^4.0.3",
     "http-proxy": "^1.18.1",
     "next": "^12.3.3",
     "react": "18.2.0",
