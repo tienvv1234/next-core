@@ -11,7 +11,16 @@ export function Auth({ children }: AuthProps) {
     const { profile, login, logout, firstLoading } = useAuth();
 
     useEffect(() => {
-        if (!firstLoading && !profile?.username) route.push('/login');
+        console.log('Auth: firstLoading 111111', firstLoading);
+        console.log('Auth: profile 111111111', profile);
+        console.log('Auth 1111111', !firstLoading && !profile?.username);
+        // if (!firstLoading && !profile?.username) {
+        //     route.push('/login');
+        // }
+        if (!profile?.username) {
+            console.log('Auth: route.push(/login) 111111111');
+            route.push('/login');
+        }
     }, [profile, route, firstLoading]);
 
     if (!profile?.username) return <div>loading...</div>;

@@ -1,3 +1,4 @@
+import { GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { authApi } from '../api-client';
@@ -5,10 +6,13 @@ import { useAuth } from '../hooks';
 
 export default function LoginPage() {
     const route = useRouter();
-    const {profile, login, logout} = useAuth({
-        revalidateOnMount: false,
-        
-    })
+    const {profile, login, logout} = useAuth()
+
+    React.useEffect(() => {
+        console.log('LoginPage: profile 222222222222', profile);
+        // if(profile?.username) route.push('/about')
+    }, [profile]);
+
     async function handleLoginClick() {
         try {
             await login()
@@ -43,4 +47,22 @@ export default function LoginPage() {
             <button onClick={handleLogoutClick}>logout</button>
         </div>
     );
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+//   console.log('getStaticProps');
+//   const { params } = context;
+//   console.log('params', params)
+//   const response: any = await new Promise((resolve) => resolve({ data: [{id: 1}, {id: 2}] }));
+//   console.log('response', response)
+
+
+  return {
+    props: {
+      data: 'response.data',
+    },
+    revalidate: 5, // In seconds re-generate the page (if the page is not pre-rendered, 
+    //Next.js will wait for the page to be generated before returning the response. This approach is called Incremental Static Regeneration.
+    // call after 5 seconds to get new data)
+  }
 }
