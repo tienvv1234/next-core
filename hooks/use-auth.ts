@@ -30,12 +30,25 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
 
     const firstLoading = profile === undefined && error === undefined;
 
-    useEffect(() => {
-        const profile11 = JSON.parse(localStorage.getItem('profile') || 'null');
-        if(profile11) {
-            setProfile(profile11);
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log('useEffect')
+    //     const profile11 = JSON.parse(localStorage.getItem('profile') || 'null');
+    //     if(profile11) {
+    //         setProfile(profile11);
+    //     }
+    // }, []);
+
+    // const isAuth = () => {
+    //     // let profile = false;
+    //     // if(!ISSERVER) {
+    //     //     profile = JSON.parse(localStorage.getItem('profile') || 'null');
+    //     //     return !!profile;
+    //     // }
+    //     // return profile;
+
+    //     const profile = localStorage ? JSON.parse(localStorage.getItem('profile') || 'null') : null;
+    //     return !!profile;
+    // }
 
     async function getProfile() {
         try {
@@ -60,6 +73,7 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
 
     async function logout() {
         await authApi.logout();
+        localStorage.clear();
         // mutate({}, false);// ko call api nen ko await
     }
 

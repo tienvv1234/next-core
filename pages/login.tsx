@@ -6,12 +6,14 @@ import { useAuth } from '../hooks';
 
 export default function LoginPage() {
     const route = useRouter();
-    const {profile, login, logout} = useAuth()
-
-    React.useEffect(() => {
-        console.log('LoginPage: profile 222222222222', profile);
-        // if(profile?.username) route.push('/about')
-    }, [profile]);
+    const {profile, login, logout, firstLoading} = useAuth()
+    console.log('LoginPage')
+    React.useLayoutEffect(() => {
+        console.log('LoginPage: firstLoading', firstLoading);
+        const profileToken = localStorage.getItem('profile');
+        console.log('LoginPage: profileToken', profileToken)
+        if(profileToken) route.push('/about')
+    }, [route]);
 
     async function handleLoginClick() {
         try {
@@ -39,6 +41,7 @@ export default function LoginPage() {
     }
     return (
         <div>
+            {console.log(1111)}
             <h1>Login page</h1>
 
             <p>Profile: {JSON.stringify(profile || {}, null, 4)}</p>
