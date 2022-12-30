@@ -8,7 +8,7 @@ const BLOG_FOLDER = path.join(process.cwd(), 'docs');
 export async function getPostList(): Promise<Post[]> {
     // read all markdown files
     const fileNaneList = fs.readdirSync(BLOG_FOLDER);
-    console.log(fileNaneList);
+    // console.log(fileNaneList);
     // traverse all markdown files
     // get the title and date of each file
     // return the list of title and date
