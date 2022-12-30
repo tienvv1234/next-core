@@ -12,7 +12,7 @@ export default function RecentPost() {
             title: 'Making a design system from scratch',
             description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
             tagList: ['Design', 'Pattern'],
-            publishedDate: new Date().getTime().toString(),
+            publishedDate: new Date().toUTCString(),
             slug: '',
         },
         {
@@ -20,7 +20,7 @@ export default function RecentPost() {
             title: 'Creating pixel perfect icons in Figma',
             description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
             tagList: ['Figma', 'Icon Design'],
-            publishedDate: new Date().getTime().toString(),
+            publishedDate: new Date().toUTCString(),
             slug: '',
         }
     ];

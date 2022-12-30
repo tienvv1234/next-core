@@ -9,6 +9,12 @@ export default function LoginPage() {
         revalidateOnMount: false,
         
     })
+
+    React.useEffect(() => {
+        console.log('profile', profile);
+        if (profile?.username) route.push('/about');
+    }, [profile, route]);
+    
     async function handleLoginClick() {
         try {
             await login()

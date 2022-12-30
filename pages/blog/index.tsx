@@ -1,27 +1,36 @@
+import { Box, Container, Divider } from '@mui/material';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 import Link from 'next/link';
+import { PostItem } from '../../components/blog';
+import { MainLayout } from '../../components/layout';
+import { Post } from '../../models';
 import { getPostList } from '../../utils/posts';
 
 export interface IBlogListPageProps {
-    blogs: any[];
+    posts: Post[];
 }
 
-export default function BlogListPage({ blogs }: IBlogListPageProps) {
-    console.log('Blogs', blogs);
+export default function BlogListPage({ posts }: IBlogListPageProps) {
+    console.log('Blogs', posts);
     return (
-        <div>
-            <h1>Blog List Page</h1>
+        <Box>
+            <Container>
+                <h1>Blog</h1>
 
-            <ul>
-                {blogs.map((blog) => (
-                    <li key={blog.id}>
-                        <Link href={`/blogs/${blog.id}`}>
-                            <a>{blog.title}</a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                <Box component="ul" sx={{ listStyleType: 'none', p: 0 }}>
+                    {posts.map((post) => (
+                        <li key={post.id}>
+                            <Link href={`/posts/${post.slug}`}>
+                                <a>
+                                    <PostItem post={post} />
+                                </a>
+                            </Link>
+                            <Divider sx={{ my: 3 }} />
+                        </li>
+                    ))}
+                </Box>
+            </Container>
+        </Box>
     );
 }
 
@@ -31,7 +40,9 @@ export const getStaticProps: GetStaticProps<IBlogListPageProps> = async (
     const data = await getPostList();
     return {
         props: {
-            blogs: data,
+            posts: data,
         },
     };
-}
+};
+
+BlogListPage.Layout = MainLayout;

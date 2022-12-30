@@ -11,6 +11,7 @@ export function Auth({ children }: AuthProps) {
     const { profile, login, logout, firstLoading } = useAuth();
 
     useEffect(() => {
+        console.log('profile', profile);
         if (!firstLoading && !profile?.username) route.push('/login');
     }, [profile, route, firstLoading]);
 
